@@ -36,7 +36,7 @@
             <option value=5>5 (Strongly Agree)</option>
         </select>
         <h3>
-            <strong>Question 2</strong>
+        <!--    <strong>Question 2</strong>
         </h3>
         <h4>You find it easy to stay relaxed even when there is some pressure.</h4>
         <select class="form-control" id="q2">
@@ -142,7 +142,7 @@
             <option value=3>3</option>
             <option value=4>4</option>
             <option value=5>5 (Strongly Agree)</option>
-        </select>
+        </select>-->
         <br>
         <button type="submit" class="btn btn-primary submit">Submit</button>
         <footer class="footer">
@@ -158,12 +158,20 @@
 <script type="text/javascript">
     $(".submit").on("click", function (event) {
         event.preventDefault();
-        var newFriend = {
+        let newFriend = {
             name: $("#friendName").val().trim(),
-            photo: $("#friendPhoto"),
-            score: ["q1", "q2", ]
-        }
+            photo: $("#friendPhoto").val().trim(),
+            score: [$("#q1").val()]
+        };
+
         console.log(newFriend);
+
+        $.post('/api/friends', newFriend, result => {
+                console.log(result)
+                $('#friendName').val('');
+                $('#friendPhoto').val('');
+                $('#q1').val('');
+            })
     });
 
 </script>
