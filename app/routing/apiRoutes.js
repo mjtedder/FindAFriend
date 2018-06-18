@@ -39,16 +39,6 @@ module.exports = function(app) {
     });
 };
 
-
-//function findMatch
- function findFriend() {
-     let result;
-     let score = 50;
-     for (friend of friends) {
-        console.log(friend);
-     }
- }
-
 //ROUTING
 module.exports = function (app) {
     //API GET request
