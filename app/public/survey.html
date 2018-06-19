@@ -153,13 +153,14 @@
                 </p>
             </div>
             <!--Modal Code-->
-            <div id ="modal1" class="modal">
+            <div id ="modal1" class="modal" style="display: none">
                 <div class="modal-content">
                     <h4>Meet Your New Friend!</h4>
                     <h5 id="matchName"></h5>
                     <img id="matchPic" src="" alt="No Image" width=250px>
                 </div>
                 <div class="modal-footer">
+                <span class="close" id='btnClose'>&times;</span>
                     <a href="#!">Done</a>
                 </div>
                 </div>
@@ -184,7 +185,7 @@
         let newFriend = {
             name: $("#friendName").val().trim(),
             photo: $("#friendPhoto").val().trim(),
-            score: [
+            scores: [
                 $('#q1').val(),
                 $('#q2').val(),
                 $('#q3').val(),
@@ -197,26 +198,19 @@
                 $('#q10').val()]
         };
         console.log(newFriend);
-        $.post(window.location.origin + '/api/friends', newFriend, result => {
+        $.post('/api/friends', newFriend, result => {
             $('#matchName').text(result.name);
             $('#matchPic').attr('src', result.photo);
-            $('#modal1').attr('style', 'display: none');
-            console.log(result);
-            $('#friendName').val('');
-            $('#friendPhoto').val('');
-            $('#q1').val('');
-            $('#q2').val('');
-            $('#q3').val('');
-            $('#q4').val('');
-            $('#q5').val('');
-            $('#q6').val('');
-            $('#q7').val('');
-            $('#q8').val('');
-            $('#q9').val('');
-            $('#q10').val('');
+            $('#modal1').attr('style', 'display: inline-block');
+            console.log("result: " + result);
+            console.log(result.name);
         });
         //$.post('/api/friends', newFriend, result => {
             });
+            $('#btnClose').on("click", event => {
+            event.preventDefault();
+            $('#resultModal').attr('style', 'display: none');
+  });
 
 </script>
 </html>

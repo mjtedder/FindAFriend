@@ -4,12 +4,12 @@ let path = require('path');
 
 let app = express();
 
-let PORT = process.env.PORT || 8080;
+let PORT = process.env.PORT || 8081;
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-require(path.join(__dirname, './app/routing/apiRoutes'))(app)
+require('./app/routing/apiRoutes')(app)
 require(path.join(__dirname, './app/routing/htmlRoutes'))(app)
 
 app.listen(PORT, function() {
